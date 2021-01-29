@@ -4,6 +4,7 @@
 '''
 uso: python3 ic.py
 Meter el string  en el archivo input
+Haya el Indice de Coincidencia de una cadena de caracteres
 '''
 #AUGEZYXUELZKYVJJERMWZMPSPACUHAIYQVORBBKSBEFZFTRDYTFIIGEWEKLKFXELKJYLDMW
 
