@@ -3,7 +3,7 @@
 # -*- coding: latin1 -*-
 import sys,os
 '''
-uso: python3 porta-bellaso.py [option]
+uso: python3 adfgvx.py [option]
 
 if 0 then encode
 else then decode
@@ -91,7 +91,7 @@ def encode(message, polibius, key):
     # reorder index = [0, 6, 12, 4, 10, 3, 9, 15, 1, 7, 13, 2, 8, 14, 5, 11]
     print("\n the indexes for the columnar transposition is:\n  " + key + "\n  " + "".join(str(elem) for elem in k) + "\n")
     print("If we place the output below the numbers and then reorder each column we obtain the following:")
-    return ''.join(s[j] for i in k for j in range(i, len(s), n))
+    return ' '.join(s[j] for i in k for j in range(i, len(s), n))
 
 
 def decode(message, polibius, key):
