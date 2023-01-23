@@ -50,6 +50,7 @@ def vigenere_enc():
         expanded_key_length = len(expanded_key)
 
     key_position = 0
+    alph_len = len(alphabet)
 
     for letter in input_string:
         if letter in alphabet:
@@ -61,8 +62,8 @@ def vigenere_enc():
             key_position = key_position + 1
             # changes the original of the input string character
             new_position = position + key_character_position
-            if new_position > 29:
-                new_position = new_position - 29
+            if new_position > alph_len:
+                new_position = new_position - alph_len
             new_character = alphabet[new_position]
             enc_string = enc_string + new_character
         else:
@@ -89,6 +90,7 @@ def vigenere_dec():
         expanded_key_length = len(expanded_key)
 
     key_position = 0
+    alph_len = len(alphabet)
 
     for letter in input_string:
         if letter in alphabet:
@@ -100,8 +102,8 @@ def vigenere_dec():
             key_position = key_position + 1
             # changes the original of the input string character
             new_position = position - key_character_position
-            if new_position > 29:
-                new_position = new_position + 29
+            if new_position > alph_len:
+                new_position = new_position + alph_len
             new_character = alphabet[new_position]
             dec_string = dec_string + new_character
         else:
