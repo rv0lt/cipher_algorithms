@@ -1,28 +1,41 @@
 #!/usr/bin/env python
- # -*- coding: latin1 -*-
+ # -*- coding: utf-8 -*-
 import os, sys
 '''
-uso: python3 vigenere.py [option]
-
-if 0 then encode
-else then decode
+uso: python3 vigenere.py
 
 You will cipher/decipher the given text with the given key in key-autokey mode
 https://www.dcode.fr/cifrado-vigenere
 '''
-def vigenere_enc():
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
-    input_string = ""
-    enc_key = ""
-    enc_string = ""
 
-    # Takes encrpytion key from user
-    enc_key = input("Please enter encryption key: ")
-    enc_key = enc_key.lower()
+def ask_inputs():
+
+    alph = ""
+    input_string = ""
+    key = ""
+
+    # Takes string from user
+    alph = input("Write S for swedish alphabet, else for english : ")
+    alph = alph.lower()
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    if alph == "s":
+        alphabet+="åäö"
+
+    # Takes key from user
+    key = input("Please enter encryption key: ")
+    key = key.lower()
 
     # Takes string from user
     input_string = input("Please enter a string of text: ")
     input_string = input_string.lower()
+
+    return alphabet,key,input_string
+
+
+def vigenere_enc():
+
+    enc_string = ""
+    alphabet,enc_key,input_string = ask_inputs()
 
     # Lengths of input_string
     string_length = len(input_string)
@@ -48,8 +61,8 @@ def vigenere_enc():
             key_position = key_position + 1
             # changes the original of the input string character
             new_position = position + key_character_position
-            if new_position > 26:
-                new_position = new_position - 26
+            if new_position > 29:
+                new_position = new_position - 29
             new_character = alphabet[new_position]
             enc_string = enc_string + new_character
         else:
@@ -59,18 +72,9 @@ def vigenere_enc():
 
 
 def vigenere_dec():
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
-    input_string = ""
-    dec_key = ""
+
     dec_string = ""
-
-    # Takes encrpytion key from user
-    dec_key = input("Please enter encryption key: ")
-    dec_key = dec_key.lower()
-
-    # Takes string from user
-    input_string = input("Please enter a string of text: ")
-    input_string = input_string.lower()
+    alphabet,dec_key,input_string = ask_inputs()
 
     # Lengths of input_string
     string_length = len(input_string)
@@ -96,8 +100,8 @@ def vigenere_dec():
             key_position = key_position + 1
             # changes the original of the input string character
             new_position = position - key_character_position
-            if new_position > 26:
-                new_position = new_position + 26
+            if new_position > 29:
+                new_position = new_position + 29
             new_character = alphabet[new_position]
             dec_string = dec_string + new_character
         else:
@@ -110,12 +114,18 @@ if __name__ == "__main__":
     args = sys.argv[1:]
     contin=True
     while contin:
-        if len(args) == 1 and args[0] == '0':
-            vigenere_enc()
-        elif len(args) == 1:
+        
+        # ask for code or decode
+        operation = input("Write D for Decode Operation, else for Code operation: ")
+        operation = operation.lower()
+
+        if operation == "d":
             vigenere_dec()
-        letter = input("Continue? press Y to continue  ")
-        letter = letter.lower()
-        if not (letter == 'y'):
+        else:
+            vigenere_enc()
+
+        keep = input("Continue to do more operations? press Y to continue, else terminate  ")
+        keep = keep.lower()
+        if not (keep == 'y'):
             contin=False
 
