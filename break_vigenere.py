@@ -127,7 +127,7 @@ if __name__ == "__main__":
     alph = alph.lower()
     abcd = "abcdefghijklmnopqrstuvwxyz"
     if alph == "s":
-        abcd+="åäö"
+        abcd += "åäö"
 
     data = input("Please enter the text to try to break: ")
     data = data.lower()
