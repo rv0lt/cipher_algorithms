@@ -32,10 +32,9 @@ def ask_inputs():
     return alphabet,key,input_string
 
 
-def vigenere_enc():
+def vigenere_enc(alphabet,enc_key,input_string):
 
     enc_string = ""
-    alphabet,enc_key,input_string = ask_inputs()
 
     # Lengths of input_string
     string_length = len(input_string)
@@ -62,20 +61,17 @@ def vigenere_enc():
             key_position = key_position + 1
             # changes the original of the input string character
             new_position = position + key_character_position
-            if new_position > alph_len:
+            if new_position >= alph_len:
                 new_position = new_position - alph_len
             new_character = alphabet[new_position]
             enc_string = enc_string + new_character
-        else:
-            enc_string = enc_string + letter
-    print("The solution is: \n" + enc_string.upper())
+    return enc_string
+    #print("The solution is: \n" + enc_string)
     #print(enc_string)
 
 
-def vigenere_dec():
-
+def vigenere_dec(alphabet,dec_key,input_string):
     dec_string = ""
-    alphabet,dec_key,input_string = ask_inputs()
 
     # Lengths of input_string
     string_length = len(input_string)
@@ -102,29 +98,30 @@ def vigenere_dec():
             key_position = key_position + 1
             # changes the original of the input string character
             new_position = position - key_character_position
-            if new_position > alph_len:
+            if new_position >= alph_len:
                 new_position = new_position + alph_len
             new_character = alphabet[new_position]
             dec_string = dec_string + new_character
-        else:
-            dec_string = dec_string + letter
-    print("The solution is: \n" + dec_string.upper())
+    return dec_string
+    #print("The solution is: \n" + dec_string)
 
 
 
 if __name__ == "__main__":
-    args = sys.argv[1:]
     contin=True
     while contin:
         
         # ask for code or decode
         operation = input("Write D for Decode Operation, else for Code operation: ")
         operation = operation.lower()
-
+        
+        alphabet,key,input_string = ask_inputs()
+        sol = ""
         if operation == "d":
-            vigenere_dec()
+            sol = vigenere_dec(alphabet,key,input_string)
         else:
-            vigenere_enc()
+            sol = vigenere_enc(alphabet,key,input_string)
+        print("The solution is: \n" + sol)
 
         keep = input("Continue to do more operations? press Y to continue, else terminate  ")
         keep = keep.lower()
